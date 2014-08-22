@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<!--<![endif]-->
+<head>
+    <title>Mindfor affix Demo</title>
+
+    <!-- wp head -->
+    <link rel="stylesheet" id="bootstrap-css" href="./bootstrap.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="style-css" href="./style.css" type="text/css" media="all">
+    <script type="text/javascript" src="./jquery.js"></script>
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+"use strict";
+
+	// enable sticky footer without fixed height
+	function updateFooter() {
+		var footerHeight = jQuery("footer").outerHeight();
+		jQuery("div#wrapper").css("margin-bottom", -footerHeight);
+		jQuery(".preFooter").css("height", footerHeight);
+	}
+	
+	
+	jQuery(window).resize(function() {
+		updateFooter();
+	});	
+
+
+	// AFFIX SCRIPT
+	var affixEnabled = false;
+	function affixUpdate() {
+		var width = $(window).width();
+		if (!affixEnabled && width > 992) {
+			$("#Affix").mindforAffix();
+			affixEnabled = true;
+		}
+		else if (affixEnabled && width <= 992) {
+			var affix = $("#Affix").mindforAffix();
+			if (affix)
+				affix.remove();
+			affixEnabled = false;
+		}
+	}
+	$(window).resize(affixUpdate);
+	affixUpdate();
+			
+	var article = $("#content .container .row .article:first");
+	var affixUl = $("#Affix .page-contents > menu:first");
+	$.each(article.find("h2, h3"), function (index, elem) {
+		var title = $(elem).attr("title");
+			
+		if (title == "" || title == null)
+			return;
+	
+		title = title.trim();
+	
+		if (title == "")
+			return;
+	
+		$(elem).attr("id", "contents" + index);
+		affixUl.append("<li class='" + ($(elem).prop("tagName").toUpperCase() == "H2" ? "" : "child") + "'><a href='#contents" + index + "'>" + title + "</a></li>");
+	});
+	
+	if (affixUl.find("li").length == 0)
+		$("#AffixNav").hide();
+	else
+		affixUl.append("<li><a href='#top'>up</a></li>");
+		
+	setTimeout(function() {
+		$("body").scrollspy({ target: "#AffixNav", offset: 75 });
+	}, 0);
+	
+	
+	$("#AffixNav menu li a[href^='#']").on('click', function(e) {
+	   // prevent default anchor click behavior
+	   e.preventDefault();
+	   
+	   // store hash
+	   var hash = this.hash;
+	   
+	   if (hash === "#top") {
+			// animate
+			$('html, body').animate({ scrollTop: 0 }, 500, function(){
+				// when done, add hash to url (default click behaviour)
+				window.location.hash = "";
+			});
+	   }
+	   else {
+		    //animate
+		   	var scrollToPos = $(this.hash).offset().top - 50;//$(this.hash).outerHeight(true);
+			if (scrollToPos < 0)
+				scrollToPos = 0;
+		   	$('html, body').animate({ scrollTop: scrollToPos }, 500, function(){
+			  	// when done, add hash to url (default click behaviour)
+				window.location.hash = hash;
+		 	});
+		 }
+		 
+		 return false;
+	});
+	
+	updateFooter();
+
+});
+</script>
+</head>
+<body>
+    <div id="wrapper">
+        <!-- start header -->
+        <header>
+			<div class="container">
+				<img src="Unknown.png" alt="Mindfor" class="logo">
+				<nav class="mainmenu">
+					<menu>
+						<li><a href="./mindfor.affix.pdf" target="_blank">Docs in PDF</a></li>
+						<li><a href="./mindfor.affix.js" target="_blank">Download source</a></li>
+						<li><a href="./mindfor.affix.min.js" target="_blank">Download minified</a></li>
+					</menu>	
+				</nav>
+			</div>
+		</header>
+
+        <section id="content">
+            <div class="container mindfor-affix-stop">
+                <div class="row">
+                    <div class="col-md-8 article">
+                        <h2 title="Mindfor affix"> Jquery Mindfor affix</h2>
+                        <br/>The affix will reflect which part of the content the user is reading/looking at. But the affix can also be used to jump to a certain section in the content.
+                        <h2 title="Usage">Usage</h2>
+                        <ul>
+                            <li>
+                                include jQuery:
+                                <br />
+                                <code>
+                                    &ltscript src="http://code.jquery.com/jquery-1.11.0.min.js"&gt&lt/script&gt
+                                </code>
+                            </li>
+                            <li>
+                                add js:
+                                <br />
+                                <code>
+                                    &ltscript src="./mindfor.affix.js"&gt&lt/script&gt<br/>
+                                </code>
+                            </li>
+                        </ul>
+                        <h2 title='Affix'>Affix</h2>
+		<ul>
+			<li>call the plugin, with js</li>
+			<code>$.mindforAffix()</code>
+		</ul>
+                        <pre>
+		<span>$("#element").mindforAffix();</span>
+                            </pre>
+                        <h2 title="Options">Options:</h2>
+                        <ul>
+                            <li>
+                                    attribute class="mindfor-affix-stop" is needed to move the element in the current container
+                            </li>
+                        </ul>
+                        <br />
+                        <h2 title="Example">Example:</h2>
+                        <br/>The subnavigation on the right is a live demo of the affix plugin.
+                        <pre>
+<span style='color:#004a43; '>&lt;!DOCTYPE html></span>
+<span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>html</span><span style='color:#a65700; '>></span>
+<span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>head</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>title</span><span style='color:#a65700; '>></span>Mindfor affix Demo<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>title</span><span style='color:#a65700; '>></span>
+
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>link</span><span style='color:#274796; '> </span><span style='color:#074726; '>rel</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"stylesheet"</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"bootstrap-css"</span><span style='color:#274796; '> </span><span style='color:#074726; '>href</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"./bootstrap.min.css"</span><span style='color:#274796; '> </span><span style='color:#074726; '>type</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"text/css"</span><span style='color:#274796; '> </span><span style='color:#074726; '>media</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"all"</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>link</span><span style='color:#274796; '> </span><span style='color:#074726; '>rel</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"stylesheet"</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"style-css"</span><span style='color:#274796; '> </span><span style='color:#074726; '>href</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"./style.css"</span><span style='color:#274796; '> </span><span style='color:#074726; '>type</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"text/css"</span><span style='color:#274796; '> </span><span style='color:#074726; '>media</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"all"</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script type="text/javascript" src="./jquery.js"</span><span style='color:#a65700; '>></span><span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script type="text/javascript"</span><span style='color:#a65700; '>></span>
+    jQuery<span style='color:#808030; '>(</span>document<span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>ready<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>$<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+<span style='color:#800000; '>"</span><span style='color:#0000e6; '>use strict</span><span style='color:#800000; '>"</span><span style='color:#800080; '>;</span>
+
+	<span style='color:#696969; '>// AFFIX SCRIPT</span>
+	<span style='color:#800000; font-weight:bold; '>var</span> affixEnabled <span style='color:#808030; '>=</span> <span style='color:#0f4d75; '>false</span><span style='color:#800080; '>;</span>
+	<span style='color:#800000; font-weight:bold; '>function</span> affixUpdate<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+		<span style='color:#800000; font-weight:bold; '>var</span> width <span style='color:#808030; '>=</span> $<span style='color:#808030; '>(</span>window<span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>width<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+		<span style='color:#800000; font-weight:bold; '>if</span> <span style='color:#808030; '>(</span><span style='color:#808030; '>!</span>affixEnabled <span style='color:#808030; '>&amp;&amp;</span> width <span style='color:#808030; '>></span> <span style='color:#008c00; '>992</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+			$<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>#Affix</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>mindforAffix<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+			affixEnabled <span style='color:#808030; '>=</span> <span style='color:#0f4d75; '>true</span><span style='color:#800080; '>;</span>
+		<span style='color:#800080; '>}</span>
+		<span style='color:#800000; font-weight:bold; '>else</span> <span style='color:#800000; font-weight:bold; '>if</span> <span style='color:#808030; '>(</span>affixEnabled <span style='color:#808030; '>&amp;&amp;</span> width <span style='color:#808030; '>&lt;=</span> <span style='color:#008c00; '>992</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+			<span style='color:#800000; font-weight:bold; '>var</span> affix <span style='color:#808030; '>=</span> $<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>#Affix</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>mindforAffix<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+			<span style='color:#800000; font-weight:bold; '>if</span> <span style='color:#808030; '>(</span>affix<span style='color:#808030; '>)</span>
+				affix<span style='color:#808030; '>.</span>remove<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+			affixEnabled <span style='color:#808030; '>=</span> <span style='color:#0f4d75; '>false</span><span style='color:#800080; '>;</span>
+		<span style='color:#800080; '>}</span>
+	<span style='color:#800080; '>}</span>
+	$<span style='color:#808030; '>(</span>window<span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>resize<span style='color:#808030; '>(</span>affixUpdate<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+	affixUpdate<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+	updateFooter<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>head</span><span style='color:#a65700; '>></span>
+<span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>body</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"wrapper"</span><span style='color:#a65700; '>></span>
+        <span style='color:#696969; '>&lt;!-- start header --></span>
+        <span style='color:#a65700; '>&lt;</span><span style='color:#5f5035; '>header</span><span style='color:#a65700; '>></span>
+            <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"navbar navbar-default navbar-static-top"</span><span style='color:#a65700; '>></span>
+                <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"container"</span><span style='color:#a65700; '>></span>
+                    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"navbar-header"</span><span style='color:#a65700; '>></span>
+                        <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>h1</span><span style='color:#a65700; '>></span>your footer<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>h1</span><span style='color:#a65700; '>></span>
+                    <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+                <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+            <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+        <span style='color:#a65700; '>&lt;/</span><span style='color:#5f5035; '>header</span><span style='color:#a65700; '>></span>
+
+        <span style='color:#a65700; '>&lt;</span><span style='color:#5f5035; '>section</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"content"</span><span style='color:#a65700; '>></span>
+            <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"container mindfor-affix-stop"</span><span style='color:#a65700; '>></span>
+                <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"row"</span><span style='color:#a65700; '>></span>
+                    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"col-md-8 article"</span><span style='color:#a65700; '>></span>
+                        <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>h2</span><span style='color:#a65700; '>></span>your content<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>h2</span><span style='color:#a65700; '>></span>
+                    <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+                    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"col-md-4 col-xs-12"</span><span style='color:#a65700; '>></span>
+                        <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"page-content-sidebar"</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"Affix"</span><span style='color:#a65700; '>></span>
+                            <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"hidden-sm hidden-xs page-contents"</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"AffixNav"</span><span style='color:#a65700; '>></span>
+                                <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>menu</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"nav"</span><span style='color:#a65700; '>></span><span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>menu</span><span style='color:#a65700; '>></span>
+                            <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+                            <span style='color:#696969; '>&lt;!--div class="row page-short-info"--></span>
+                            <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>h2</span><span style='color:#a65700; '>></span>your content<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>h2</span><span style='color:#a65700; '>></span>
+                            <span style='color:#696969; '>&lt;!--/div--></span>
+                        <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+                    <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+                <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+            <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+        <span style='color:#a65700; '>&lt;/</span><span style='color:#5f5035; '>section</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+
+    <span style='color:#a65700; '>&lt;</span><span style='color:#5f5035; '>footer</span><span style='color:#a65700; '>></span>
+        <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"container"</span><span style='color:#a65700; '>></span>
+            <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>h1</span><span style='color:#a65700; '>></span>your content<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>h1</span><span style='color:#a65700; '>></span>
+        <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;/</span><span style='color:#5f5035; '>footer</span><span style='color:#a65700; '>></span>
+
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script type="text/javascript" src="./bootstrap.min.js"</span><span style='color:#a65700; '>></span><span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>script type="text/javascript" src="./mindfor.affix.js"</span><span style='color:#a65700; '>></span><span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>script</span><span style='color:#a65700; '>></span>
+
+<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>body</span><span style='color:#a65700; '>></span>
+<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>html</span><span style='color:#a65700; '>></span>
+</pre>
+                    </div>
+                    <div class="col-md-4 col-xs-12">
+                        <div class="page-content-sidebar" id="Affix">
+                            <div class="hidden-sm hidden-xs page-contents" id="AffixNav">
+                                <menu class="nav"></menu>
+                            </div>
+                            <!--div class="row page-short-info"-->
+                            <h2>Here you can put</h2>
+                            <h2>your information</h2>
+                            <!--/div-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h1>This is big footer</h1>
+            <h1>Look, affix stops above the footer :-)</h1>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="./bootstrap.min.js"></script>
+    <script type="text/javascript" src="./mindfor.affix.js"></script>
+
+</body>
+</html>

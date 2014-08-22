@@ -1,0 +1,95 @@
+html {
+	position: relative;
+	min-height: 100%;
+	height:  100%;
+	width: 100%;
+}
+
+body {
+	height: 100%;
+	line-height:1.6em;
+	margin:0;
+	padding:0;
+	position: relative;
+	min-width: 320px;
+    background-color: #fff;
+}
+/* ===================================
+2. layout
+==================================== */
+
+.container {
+	padding:0 20px 0 20px;
+	position:relative;
+}
+
+#wrapper{
+	width:100%;
+	min-height: 100%;
+	height: auto !important;
+    height: 100%;
+	margin:0;	
+	padding:0;
+    margin-top: 70px;
+	margin-bottom: 200px;
+	overflow:  hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position:  relative;
+    padding-bottom: 150px;
+    margin-bottom: -100px;
+    padding-top: 30px;
+}
+
+footer{
+	padding: 50px 0 0 0;
+	color:#f8f8f8;
+    background: #999;
+	width:  100%;
+    margin-top: 50px;
+}
+header {
+	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0.702941);
+	z-index: 9998;
+	position: fixed;
+	top: 0px;
+	left: 0;
+	right: 0;
+	border-bottom: solid 1px #ccc;
+}
+	header	.logo {
+		float: left;
+		display: block;
+		height: 50px;
+		
+		> img {
+			height: 50px;
+		}
+	}
+
+
+header .mainmenu {
+		text-align: right;
+		font-size: 1.1em;
+}
+
+		header .mainmenu menu {
+			padding: 0;
+			margin: 0;
+		}
+			
+			header .mainmenu menu  > li {
+				height: 100%;
+				display: inline-block;
+			}
+				
+				header .mainmenu menu  > li > a, header .mainmenu menu  > li > span {
+					display: block;
+					padding: 15px 10px;
+					color: #000;
+				}
+
+					header .mainmenu menu  > li > a.active {
+						font-weight: bold;
+					}
