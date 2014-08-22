@@ -12,9 +12,9 @@
         "email": "af@mindfor.ru",
         "company": "Mindfor, Ltd."
     },
-    "download":"https://github.com/Mindfor/jquery-shake/archive/master.zip",
-    "demo": "http://mindfor.ru/docs/shake-demo.html",
-    "docs": "http://mindfor.ru/docs/jquery-shake.pdf",
+    "download": "https://github.com/Mindfor/jquery-affix/archive/master.zip",
+    "demo": "http://mindfor.github.io/jquery-affix/",
+    "docs": "http://mindfor.github.io/jquery-affix/mindfor.affix.pdf",
     "dependencies": {
         "jquery": ">=1.5"
     },
@@ -27,15 +27,15 @@
     "maintainers": [
         {
             "name": "Anton Kryuchkov",
-            "email": "toshiba.kru@gmail.com",
+            "email": "toshiba.kru@gmail.com"
         },
         {
             "name": "Kirill Kryuchkov",
-            "email": "kkruchkov@mindfor.ru",
+            "email": "kkruchkov@mindfor.ru"
         },
         {
             "name": "Alexander Fomin",
-            "email": "af@mindfor.ru",
+            "email": "af@mindfor.ru"
         }
-    ],
+    ]
 }
