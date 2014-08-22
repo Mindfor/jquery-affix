@@ -57,7 +57,7 @@ attribute class="mindfor-affix-stop" is needed to move the element in the curren
             <div class="navbar navbar-default navbar-static-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <h1>your footer</h1>
+                        <!--you header-->
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@ attribute class="mindfor-affix-stop" is needed to move the element in the curren
             <div class="container mindfor-affix-stop">
                 <div class="row">
                     <div class="col-md-8 article">
-                        <h2>your content</h2>
+                        <!--your content-->
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <div class="page-content-sidebar" id="Affix">
@@ -74,7 +74,7 @@ attribute class="mindfor-affix-stop" is needed to move the element in the curren
                                 <menu class="nav"></menu>
                             </div>
                             <!--div class="row page-short-info"-->
-                            <h2>your content</h2>
+                            <!--your content-->
                             <!--/div-->
                         </div>
                     </div>
@@ -84,7 +84,7 @@ attribute class="mindfor-affix-stop" is needed to move the element in the curren
     </div>
     <footer>
         <div class="container">
-            <h1>your content</h1>
+            <!--your footer-->
         </div>
     </footer>
     <script type="text/javascript" src="./bootstrap.min.js"></script>
