@@ -1,0 +1,41 @@
+{
+    "name": "Mindfor affix",
+    "title": "jQuery Mindfor affix",
+    "description": "The affix will reflect which part of the content the user is reading/looking at. But the affix can also be used to jump to a certain section in the content.",
+    "keywords": [
+        "affix",
+        "animation"
+    ],
+    "version": "1.0.0",
+    "author": {
+        "name": "Alexander Fomin",
+        "email": "af@mindfor.ru",
+        "company": "Mindfor, Ltd."
+    },
+    "download":"https://github.com/Mindfor/jquery-shake/archive/master.zip",
+    "demo": "http://mindfor.ru/docs/shake-demo.html",
+    "docs": "http://mindfor.ru/docs/jquery-shake.pdf",
+    "dependencies": {
+        "jquery": ">=1.5"
+    },
+    "licenses": [
+        {
+            "type": "GPLv2",
+            "url": "https://github.com/Mindfor/jquery-affix/blob/master/LICENSE"
+        }
+    ],
+    "maintainers": [
+        {
+            "name": "Anton Kryuchkov",
+            "email": "toshiba.kru@gmail.com",
+        },
+        {
+            "name": "Kirill Kryuchkov",
+            "email": "kkruchkov@mindfor.ru",
+        },
+        {
+            "name": "Alexander Fomin",
+            "email": "af@mindfor.ru",
+        }
+    ],
+}
