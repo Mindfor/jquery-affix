@@ -18,7 +18,8 @@ attribute class="mindfor-affix-stop" is needed to move the element in the curren
 
 ##Example:##
 
-```<!DOCTYPE html>
+```html
+<!DOCTYPE html>
 <html>
 <head>
     <title>Mindfor affix Demo</title>
@@ -46,7 +47,6 @@ attribute class="mindfor-affix-stop" is needed to move the element in the curren
 	$(window).resize(affixUpdate);
 	affixUpdate();
 	updateFooter();
-
 });
 </script>
 </head>
@@ -90,4 +90,5 @@ attribute class="mindfor-affix-stop" is needed to move the element in the curren
     <script type="text/javascript" src="./bootstrap.min.js"></script>
     <script type="text/javascript" src="./mindfor.affix.js"></script>
 </body>
-</html>```
+</html>
+```
