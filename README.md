@@ -6,7 +6,7 @@ The affix will reflect which part of the content the user is reading/looking at.
 * include jQuery: 
 ```<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>```
 * add js: 
-```html <script src="./mindfor.affix.js"></script>```    
+``` <script src="./mindfor.affix.js"></script>```    
 
 ##Affix##
 call the plugin, with js  
@@ -18,7 +18,6 @@ attribute class="mindfor-affix-stop" is needed to move the element in the curren
 
 ##Example:##
 
-The subnavigation on the right is a live demo of the affix plugin.    
 ```html<!DOCTYPE html>
 <html>
 <head>
