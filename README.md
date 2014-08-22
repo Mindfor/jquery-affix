@@ -18,18 +18,16 @@ attribute class="mindfor-affix-stop" is needed to move the element in the curren
 
 ##Example:##
 
-```html<!DOCTYPE html>
+```<!DOCTYPE html>
 <html>
 <head>
     <title>Mindfor affix Demo</title>
-
     <link rel="stylesheet" id="bootstrap-css" href="./bootstrap.min.css" type="text/css" media="all">
     <link rel="stylesheet" id="style-css" href="./style.css" type="text/css" media="all">
     <script type="text/javascript" src="./jquery.js"></script>
     <script type="text/javascript">
     jQuery(document).ready(function($) {
 "use strict";
-
 	// AFFIX SCRIPT
 	var affixEnabled = false;
 	function affixUpdate() {
@@ -64,7 +62,6 @@ attribute class="mindfor-affix-stop" is needed to move the element in the curren
                 </div>
             </div>
         </header>
-
         <section id="content">
             <div class="container mindfor-affix-stop">
                 <div class="row">
@@ -85,15 +82,12 @@ attribute class="mindfor-affix-stop" is needed to move the element in the curren
             </div>
         </section>
     </div>
-
     <footer>
         <div class="container">
             <h1>your content</h1>
         </div>
     </footer>
-
     <script type="text/javascript" src="./bootstrap.min.js"></script>
     <script type="text/javascript" src="./mindfor.affix.js"></script>
-
 </body>
 </html>```
