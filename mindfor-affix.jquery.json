@@ -1,12 +1,12 @@
 {
     "name": "mindfor-affix",
-    "title": "jQuery Mindfor affix",
+    "title": "Mindfor jQuery affix",
     "description": "The affix will reflect which part of the content the user is reading/looking at. But the affix can also be used to jump to a certain section in the content.",
     "keywords": [
         "affix",
         "animation"
     ],
-    "version": "1.0.7",
+    "version": "1.0.8",
     "author": {
         "name": "Alexander Fomin",
         "email": "af@mindfor.ru",
